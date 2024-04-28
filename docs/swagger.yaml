@@ -34,6 +34,16 @@ paths:
       summary: hello world
       tags:
       - Example
+  /v1/example/middleware:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: 中间件
+      tags:
+      - Example
   /v1/example/mysql:
     get:
       produces:

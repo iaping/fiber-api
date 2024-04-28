@@ -64,6 +64,22 @@ const docTemplate = `{
                 }
             }
         },
+        "/v1/example/middleware": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Example"
+                ],
+                "summary": "中间件",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
         "/v1/example/mysql": {
             "get": {
                 "produces": [
