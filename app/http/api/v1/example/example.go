@@ -18,6 +18,6 @@ func (i *Example) SetRouter(r api.IRouter) {
 	rg.Get("/redis", i.Redis)
 	rg.Get("/mysql", i.Mysql)
 
-	rg.Use("/middleware", (&middleware.Test{}).Handle(r.App()))
+	rg.Use("/middleware", middleware.NewTest(r.App()).Handle)
 	rg.Get("/middleware", i.Middleware)
 }

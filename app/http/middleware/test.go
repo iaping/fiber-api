@@ -7,11 +7,17 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-type Test struct{}
+type Test struct {
+	app *ctx.Ctx
+}
 
-func (i *Test) Handle(app *ctx.Ctx) fiber.Handler {
-	return func(ctx *fiber.Ctx) error {
-		fmt.Println("I'm a middleware, debug:", app.Config.Debug)
-		return ctx.Next()
+func NewTest(app *ctx.Ctx) *Test {
+	return &Test{
+		app: app,
 	}
+}
+
+func (i *Test) Handle(ctx *fiber.Ctx) error {
+	fmt.Println("I'm a middleware, debug:", i.app.Config.Debug)
+	return ctx.Next()
 }
