@@ -11,12 +11,18 @@ fiber-api是一个基于fiber开发的API基础框架，让您把更多时间专
 - [redis](https://github.com/redis/go-redis)
 
 # 安装
-```
+```bash
 git clone git@github.com:iaping/fiber-api.git
 cd fiber-api
 make
 ```
 或自行go build
+
+文档
+```bash
+# swag init
+make docs
+```
 
 # 解释
 
