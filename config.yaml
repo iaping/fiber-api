@@ -4,10 +4,11 @@ Http:
   Cors:
     AllowCredentials: false
 Db:
+  Enable: false
   Driver: "mysql"
   Mysql:
     Host: "127.0.0.1"
-    Port: 3307
+    Port: 3306
     User: "root"
     Password: "123456"
     Database: "mysql"

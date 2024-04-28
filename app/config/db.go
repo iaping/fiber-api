@@ -11,6 +11,7 @@ import (
 )
 
 type Db struct {
+	Enable bool   `yaml:"Enable"`
 	Driver string `yaml:"Driver"`
 	Mysql  Mysql  `yaml:"Mysql"`
 }

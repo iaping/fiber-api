@@ -21,8 +21,10 @@ func New(cfg *config.Config) *Ctx {
 }
 
 func (ctx *Ctx) Init() (err error) {
-	if ctx.Db, err = ctx.Config.Db.New(); err != nil {
-		return
+	if ctx.Config.Db.Enable {
+		if ctx.Db, err = ctx.Config.Db.New(); err != nil {
+			return
+		}
 	}
 
 	if ctx.Config.Redis.Enable {
@@ -41,8 +43,10 @@ func (ctx *Ctx) debug() {
 		return
 	}
 
-	opts := []bundebug.Option{
-		bundebug.WithVerbose(true),
+	if ctx.Config.Db.Enable {
+		opts := []bundebug.Option{
+			bundebug.WithVerbose(true),
+		}
+		ctx.Db.AddQueryHook(bundebug.NewQueryHook(opts...))
 	}
-	ctx.Db.AddQueryHook(bundebug.NewQueryHook(opts...))
 }
