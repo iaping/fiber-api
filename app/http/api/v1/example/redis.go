@@ -7,11 +7,11 @@ import (
 )
 
 // @Tags Example
-// @Summary Example
+// @Summary redis示例
 // @Produce json
 // @Router /v1/example/redis [get]
 // @Success 200
-func (api *Example) Redis(ctx *api.Ctx) (interface{}, error) {
+func (i *Example) Redis(ctx *api.Ctx) (interface{}, error) {
 	key := "example"
 
 	status := ctx.App.Rds.Set(context.Background(), key, time.Now(), time.Minute)

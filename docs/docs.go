@@ -24,7 +24,23 @@ const docTemplate = `{
                 "tags": [
                     "Example"
                 ],
-                "summary": "Example",
+                "summary": "错误（接口不会暴露错误信息，应对一些未知或未处理的错误）",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/v1/example/error/custom": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Example"
+                ],
+                "summary": "自定义错误（接口会暴露错误信息，需要定义好错误的相关信息）",
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -40,7 +56,7 @@ const docTemplate = `{
                 "tags": [
                     "Example"
                 ],
-                "summary": "Example",
+                "summary": "hello world",
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -56,7 +72,7 @@ const docTemplate = `{
                 "tags": [
                     "Example"
                 ],
-                "summary": "example mysql",
+                "summary": "mysql示例",
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -72,7 +88,7 @@ const docTemplate = `{
                 "tags": [
                     "Example"
                 ],
-                "summary": "Example",
+                "summary": "redis示例",
                 "responses": {
                     "200": {
                         "description": "OK"

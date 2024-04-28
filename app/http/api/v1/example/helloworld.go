@@ -5,10 +5,10 @@ import (
 )
 
 // @Tags Example
-// @Summary Example
+// @Summary hello world
 // @Produce json
 // @Router /v1/example/helloworld [get]
 // @Success 200
-func (api *Example) Helloworld(ctx *api.Ctx) (interface{}, error) {
+func (i *Example) Helloworld(ctx *api.Ctx) (interface{}, error) {
 	return "hello world !!!", nil
 }

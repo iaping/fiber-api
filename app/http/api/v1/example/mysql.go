@@ -9,11 +9,11 @@ import (
 )
 
 // @Tags Example
-// @Summary example mysql
+// @Summary mysql示例
 // @Produce json
 // @Router /v1/example/mysql [get]
 // @Success 200
-func (api *Example) Mysql(ctx *api.Ctx) (interface{}, error) {
+func (i *Example) Mysql(ctx *api.Ctx) (interface{}, error) {
 	type timeZoneName struct {
 		model.Model
 		bun.BaseModel `bun:"table:time_zone_name,alias:tzn"`
