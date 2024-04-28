@@ -12,4 +12,5 @@ func (i *Example) SetRouter(r api.IRouter) {
 	rg.Get("/helloworld", i.Helloworld)
 	rg.Get("/error", i.Error)
 	rg.Get("/redis", i.Redis)
+	rg.Get("/mysql", i.Mysql)
 }
