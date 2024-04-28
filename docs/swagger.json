@@ -7,7 +7,7 @@
         "version": "v1"
     },
     "paths": {
-        "/v1/test/hello": {
+        "/v1/hello/world": {
             "get": {
                 "produces": [
                     "application/json"
