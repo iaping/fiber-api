@@ -1,0 +1,27 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "fiber-api is a basic api framework developed based on fiber",
+        "title": "api",
+        "contact": {},
+        "version": "v1"
+    },
+    "paths": {
+        "/v1/test/hello": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "v1"
+                ],
+                "summary": "Test",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    }
+}

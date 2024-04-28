@@ -1,0 +1,17 @@
+info:
+  contact: {}
+  description: fiber-api is a basic api framework developed based on fiber
+  title: api
+  version: v1
+paths:
+  /v1/test/hello:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Test
+      tags:
+      - v1
+swagger: "2.0"

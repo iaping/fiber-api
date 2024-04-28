@@ -1,0 +1,14 @@
+Debug: true
+Http:
+  Addr: ":8080"
+  Cors:
+    AllowCredentials: false
+Db:
+  Driver: "mysql"
+  Mysql:
+    Host: "127.0.0.1"
+    Port: 3306
+    User: "root"
+    Password: "123456"
+    Database: "mysql"
+    Charset: "utf8mb4"

@@ -1,0 +1,10 @@
+.idea/
+.DS_Store
+.idea
+.vscode
+bin/
+vendor/
+runtime/
+tmp/
+__debug_bin*
+.VSCodeCounter/
