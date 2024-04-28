@@ -32,8 +32,17 @@ func (s *Serve) Run() (err error) {
 }
 
 func (s *Serve) init() {
+	s.debug()
 	s.cors()
 	s.router()
+}
+
+func (s *Serve) debug() {
+	if !s.ctx.Config.Debug {
+		return
+	}
+
+	s.s.Get("/_doc/*", swagger.HandlerDefault)
 }
 
 func (s *Serve) cors() {
@@ -48,10 +57,6 @@ func (s *Serve) cors() {
 }
 
 func (s *Serve) router() {
-	if s.ctx.Config.Debug {
-		s.s.Get("/_doc/*", swagger.HandlerDefault)
-	}
-
 	// your api
 	r := api.NewRouter(s.s.Group("/v1"), s.ctx)
 	r.Inject([]api.IApi{
