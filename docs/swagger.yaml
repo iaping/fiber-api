@@ -1,17 +1,47 @@
 info:
   contact: {}
   description: fiber-api is a basic api framework developed based on fiber
-  title: api
+  title: fiber-api
   version: v1
 paths:
-  /v1/hello/world:
+  /v1/example/error:
     get:
       produces:
       - application/json
       responses:
         "200":
           description: OK
-      summary: Test
+      summary: Example
       tags:
-      - v1
+      - Example
+  /v1/example/helloworld:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Example
+      tags:
+      - Example
+  /v1/example/mysql:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: example mysql
+      tags:
+      - Example
+  /v1/example/redis:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Example
+      tags:
+      - Example
 swagger: "2.0"

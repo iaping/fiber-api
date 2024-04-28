@@ -15,7 +15,7 @@ func init() {
 	})
 }
 
-// @title api
+// @title fiber-api
 // @version v1
 // @description fiber-api is a basic api framework developed based on fiber
 func main() {

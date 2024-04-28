@@ -16,15 +16,63 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/v1/hello/world": {
+        "/v1/example/error": {
             "get": {
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
-                    "v1"
+                    "Example"
                 ],
-                "summary": "Test",
+                "summary": "Example",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/v1/example/helloworld": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Example"
+                ],
+                "summary": "Example",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/v1/example/mysql": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Example"
+                ],
+                "summary": "example mysql",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/v1/example/redis": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Example"
+                ],
+                "summary": "Example",
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -41,7 +89,7 @@ var SwaggerInfo = &swag.Spec{
 	Host:             "",
 	BasePath:         "",
 	Schemes:          []string{},
-	Title:            "api",
+	Title:            "fiber-api",
 	Description:      "fiber-api is a basic api framework developed based on fiber",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,

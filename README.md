@@ -21,7 +21,7 @@ make
 文档
 ```bash
 # swag init
-make docs
+make doc
 ```
 
 # 解释

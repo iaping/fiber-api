@@ -2,20 +2,68 @@
     "swagger": "2.0",
     "info": {
         "description": "fiber-api is a basic api framework developed based on fiber",
-        "title": "api",
+        "title": "fiber-api",
         "contact": {},
         "version": "v1"
     },
     "paths": {
-        "/v1/hello/world": {
+        "/v1/example/error": {
             "get": {
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
-                    "v1"
+                    "Example"
                 ],
-                "summary": "Test",
+                "summary": "Example",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/v1/example/helloworld": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Example"
+                ],
+                "summary": "Example",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/v1/example/mysql": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Example"
+                ],
+                "summary": "example mysql",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/v1/example/redis": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Example"
+                ],
+                "summary": "Example",
                 "responses": {
                     "200": {
                         "description": "OK"

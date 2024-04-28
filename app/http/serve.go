@@ -5,6 +5,8 @@ import (
 	"fiber-api/app/http/api"
 	v1 "fiber-api/app/http/api/v1"
 
+	_ "fiber-api/docs"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/swagger"
