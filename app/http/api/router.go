@@ -12,13 +12,12 @@ type HandlerFunc func(*Ctx) (interface{}, error)
 
 type IRouter interface {
 	Use(...interface{}) IRouter
+	Group(path string) IRouter
 
 	Get(string, HandlerFunc) IRouter
 	Post(string, HandlerFunc) IRouter
 	Put(string, HandlerFunc) IRouter
 	Delete(string, HandlerFunc) IRouter
-
-	Group(path string) IRouter
 }
 
 type Router struct {
@@ -42,6 +41,10 @@ func (r *Router) Inject(apis ...IApi) {
 func (r *Router) Use(args ...interface{}) IRouter {
 	r.Router.Use(args...)
 	return r
+}
+
+func (r *Router) Group(path string) IRouter {
+	return NewRouter(r.Router.Group(path), r.ctx)
 }
 
 func (r *Router) Get(path string, handler HandlerFunc) IRouter {
@@ -70,10 +73,6 @@ func (r *Router) Delete(path string, handler HandlerFunc) IRouter {
 		return r.handle(ctx, handler)
 	})
 	return r
-}
-
-func (r *Router) Group(path string) IRouter {
-	return NewRouter(r.Router.Group(path), r.ctx)
 }
 
 func (r *Router) handle(ctx *fiber.Ctx, handler HandlerFunc) error {
