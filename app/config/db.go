@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/pkg/errors"
 	"github.com/uptrace/bun"
 	"github.com/uptrace/bun/dialect/mysqldialect"
 )
@@ -44,5 +45,5 @@ func (i Mysql) New() (*bun.DB, error) {
 	}
 
 	db := bun.NewDB(open, mysqldialect.New())
-	return db, db.Ping()
+	return db, errors.Wrap(db.Ping(), "mysql")
 }
