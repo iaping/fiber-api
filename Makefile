@@ -3,8 +3,8 @@ default: dev
 pro:
 	@go build -trimpath -ldflags '-w -s' -v -o ./bin/fiber-api .
 
-dev: doc
+dev: docs
 	@go build -v -o ./bin/fiber-api .
 
-doc:
+docs:
 	@swag init
