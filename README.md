@@ -9,6 +9,7 @@ fiber-api是一个基于fiber开发的API基础框架，让您把更多时间专
 - [bun](https://github.com/uptrace/bun)
 - [zerolog](https://github.com/rs/zerolog)
 - [redis](https://github.com/redis/go-redis)
+- [swagger](https://github.com/gofiber/swagger)
 
 # 安装
 ```bash
@@ -18,11 +19,13 @@ make
 ```
 或自行go build
 
-文档
+# API文档
+请先安装[swag](https://github.com/swaggo/swag)
 ```bash
 # swag init
 make doc
 ```
+访问：http://127.0.0.1:8080/_doc/index.html
 
 # 解释
 
