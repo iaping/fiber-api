@@ -3,6 +3,7 @@ package ctx
 import (
 	"fiber-api/app/config"
 
+	"github.com/redis/go-redis/v9"
 	"github.com/uptrace/bun"
 	"github.com/uptrace/bun/extra/bundebug"
 )
@@ -10,6 +11,7 @@ import (
 type Ctx struct {
 	Config *config.Config
 	Db     *bun.DB
+	Rds    *redis.Client
 }
 
 func New(cfg *config.Config) *Ctx {
@@ -21,6 +23,12 @@ func New(cfg *config.Config) *Ctx {
 func (ctx *Ctx) Init() (err error) {
 	if ctx.Db, err = ctx.Config.Db.New(); err != nil {
 		return
+	}
+
+	if ctx.Config.Redis.Enable {
+		if ctx.Rds, err = ctx.Config.Redis.New(); err != nil {
+			return
+		}
 	}
 
 	ctx.debug()

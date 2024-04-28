@@ -8,9 +8,10 @@ import (
 )
 
 type Config struct {
-	Debug bool `yaml:"Debug"`
-	Http  Http `yaml:"Http"`
-	Db    Db   `yaml:"Db"`
+	Debug bool  `yaml:"Debug"`
+	Http  Http  `yaml:"Http"`
+	Db    Db    `yaml:"Db"`
+	Redis Redis `yaml:"Redis"`
 }
 
 func Load(path string) (*Config, error) {

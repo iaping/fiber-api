@@ -7,8 +7,14 @@ Db:
   Driver: "mysql"
   Mysql:
     Host: "127.0.0.1"
-    Port: 3306
+    Port: 3307
     User: "root"
     Password: "123456"
     Database: "mysql"
     Charset: "utf8mb4"
+Redis:
+  Enable: true
+  Host: "127.0.0.1"
+  Port: 6379
+  Password: "123456"
+  DB: 0

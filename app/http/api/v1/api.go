@@ -1,9 +1,9 @@
 package v1
 
 import (
-	"fiber-api/app/http/api/v1/hello"
+	"fiber-api/app/http/api/v1/example"
 )
 
 var (
-	Test = &hello.Hello{}
+	Example = &example.Example{}
 )

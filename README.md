@@ -8,6 +8,7 @@ fiber-api是一个基于fiber开发的API基础框架，让您把更多时间专
 - [fiber](https://github.com/gofiber/fiber)
 - [bun](https://github.com/uptrace/bun)
 - [zerolog](github.com/rs/zerolog)
+- [redis](https://github.com/redis/go-redis)
 
 # 安装
 ```

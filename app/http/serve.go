@@ -53,6 +53,6 @@ func (s *Serve) router() {
 	// your api
 	r := api.NewRouter(s.s.Group("/v1"), s.ctx)
 	r.Inject([]api.IApi{
-		v1.Test,
+		v1.Example,
 	}...)
 }
