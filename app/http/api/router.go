@@ -85,7 +85,7 @@ func (r *Router) handle(ctx *fiber.Ctx, handler HandlerFunc) error {
 	var resp Response
 
 	if data, err := handler(&Ctx{Fiber: ctx, App: r.app}); err != nil {
-		log.Err(err).Msgf("path: %s", ctx.Request().URI().Path())
+		log.Err(err).Str("Path", string(ctx.Request().URI().Path())).Msg("Api")
 		resp = r.error(err)
 	} else {
 		resp = NewResponse(data)
