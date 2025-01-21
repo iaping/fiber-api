@@ -10,6 +10,6 @@ import (
 // @Produce json
 // @Router /v1/example/error [get]
 // @Success 200
-func (i *Example) Error(ctx *api.Ctx) (interface{}, error) {
-	return nil, errors.New("this is an example of what went wrong")
+func (i *Example) Error(ctx *api.Ctx) error {
+	return errors.New("this is an example of what went wrong")
 }

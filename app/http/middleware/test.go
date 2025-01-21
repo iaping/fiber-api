@@ -18,6 +18,6 @@ func NewTest(app *ctx.Ctx) *Test {
 }
 
 func (i *Test) Handle(ctx *fiber.Ctx) error {
-	fmt.Println("I'm a middleware, debug:", i.app.Config.Debug)
+	fmt.Println("I'm a middleware, debug:", i.app.Cfg.Debug)
 	return ctx.Next()
 }

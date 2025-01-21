@@ -9,40 +9,51 @@ import (
 )
 
 type Ctx struct {
-	Config *config.Config
-	Db     *bun.DB
-	Rds    *redis.Client
+	Cfg *config.Config
+	Db  *bun.DB
+	Rds *redis.Client
 }
 
 func New(cfg *config.Config) *Ctx {
 	return &Ctx{
-		Config: cfg,
+		Cfg: cfg,
 	}
 }
 
+func Load(path string) (*Ctx, error) {
+	cfg, err := config.Load(path)
+	if err != nil {
+		return nil, err
+	}
+
+	ctx := New(cfg)
+	return ctx, ctx.Init()
+}
+
 func (ctx *Ctx) Init() (err error) {
-	if err = ctx.initDb(); err != nil {
+	if err = ctx.db(); err != nil {
 		return
 	}
 
-	if err = ctx.initRds(); err != nil {
+	if err = ctx.rds(); err != nil {
 		return
 	}
 
 	return
 }
 
-func (ctx *Ctx) initDb() (err error) {
-	if !ctx.Config.Db.Enable {
+// init db
+func (ctx *Ctx) db() (err error) {
+	if !ctx.Cfg.Db.Enable {
 		return
 	}
 
-	if ctx.Db, err = ctx.Config.Db.New(); err != nil {
+	if ctx.Db, err = ctx.Cfg.Db.New(); err != nil {
 		return
 	}
 
 	// debug
-	if ctx.Config.Debug {
+	if ctx.Cfg.Debug {
 		opts := []bundebug.Option{
 			bundebug.WithVerbose(true),
 		}
@@ -52,14 +63,12 @@ func (ctx *Ctx) initDb() (err error) {
 	return
 }
 
-func (ctx *Ctx) initRds() (err error) {
-	if !ctx.Config.Redis.Enable {
+// init redis
+func (ctx *Ctx) rds() (err error) {
+	if !ctx.Cfg.Redis.Enable {
 		return
 	}
 
-	if ctx.Rds, err = ctx.Config.Redis.New(); err != nil {
-		return
-	}
-
+	ctx.Rds, err = ctx.Cfg.Redis.New()
 	return
 }

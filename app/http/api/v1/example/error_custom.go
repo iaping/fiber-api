@@ -9,6 +9,6 @@ import (
 // @Produce json
 // @Router /v1/example/error/custom [get]
 // @Success 200
-func (i *Example) ErrorCustom(ctx *api.Ctx) (interface{}, error) {
-	return nil, api.NewError(10000, "this is a custom error")
+func (i *Example) ErrorCustom(ctx *api.Ctx) error {
+	return api.NewError(10000, "this is a custom error")
 }

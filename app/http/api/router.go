@@ -8,7 +8,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type HandlerFunc func(*Ctx) (interface{}, error)
+type HandlerFunc func(*Ctx) error
 
 type IRouter interface {
 	Use(...interface{}) IRouter
@@ -82,16 +82,13 @@ func (r *Router) Delete(path string, handler HandlerFunc) IRouter {
 }
 
 func (r *Router) handle(ctx *fiber.Ctx, handler HandlerFunc) error {
-	var resp Response
-
-	if data, err := handler(&Ctx{Fiber: ctx, App: r.app}); err != nil {
+	if err := handler(&Ctx{Fiber: ctx, App: r.app}); err != nil {
 		log.Err(err).Str("Path", string(ctx.Request().URI().Path())).Msg("Api")
-		resp = r.error(err)
-	} else {
-		resp = NewResponse(data)
-	}
 
-	return ctx.Status(resp.Status).JSON(resp)
+		resp := r.error(err)
+		return ctx.Status(resp.Status).JSON(resp)
+	}
+	return nil
 }
 
 func (r *Router) error(err error) Response {

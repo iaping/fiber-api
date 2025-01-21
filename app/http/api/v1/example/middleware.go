@@ -9,6 +9,6 @@ import (
 // @Produce json
 // @Router /v1/example/middleware [get]
 // @Success 200
-func (i *Example) Middleware(ctx *api.Ctx) (interface{}, error) {
-	return "I used a middleware", nil
+func (i *Example) Middleware(ctx *api.Ctx) error {
+	return ctx.Response("I used a middleware")
 }

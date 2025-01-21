@@ -11,22 +11,26 @@ import (
 // @Produce json
 // @Router /v1/example/redis [get]
 // @Success 200
-func (i *Example) Redis(ctx *api.Ctx) (interface{}, error) {
+func (i *Example) Redis(ctx *api.Ctx) error {
 	key := "example"
 
 	status := ctx.App.Rds.Set(context.Background(), key, time.Now(), time.Minute)
 	if err := status.Err(); err != nil {
-		return nil, err
+		return err
 	}
 
 	cmd := ctx.App.Rds.Get(context.Background(), key)
 	if err := cmd.Err(); err != nil {
-		return nil, err
+		return err
 	}
 
-	val, _ := cmd.Result()
-	return map[string]interface{}{
+	val, err := cmd.Result()
+	if err != nil {
+		return err
+	}
+
+	return ctx.Response(map[string]interface{}{
 		"key":   key,
 		"value": val,
-	}, cmd.Err()
+	})
 }
