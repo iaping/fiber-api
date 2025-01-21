@@ -11,7 +11,7 @@ type Ctx struct {
 	App   *ctx.Ctx
 }
 
-func (ctx *Ctx) Response(data interface{}) error {
+func (ctx *Ctx) Resp(data interface{}) error {
 	resp := NewResponse(data)
 	return ctx.Json(resp)
 }
