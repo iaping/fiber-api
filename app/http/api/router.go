@@ -24,13 +24,13 @@ type IRouter interface {
 
 type Router struct {
 	fiber.Router
-	app *ctx.Ctx
+	ctx *ctx.Ctx
 }
 
-func NewRouter(router fiber.Router, app *ctx.Ctx) *Router {
+func NewRouter(router fiber.Router, ctx *ctx.Ctx) *Router {
 	return &Router{
 		Router: router,
-		app:    app,
+		ctx:    ctx,
 	}
 }
 
@@ -46,11 +46,11 @@ func (r *Router) Use(args ...interface{}) IRouter {
 }
 
 func (r *Router) Group(path string) IRouter {
-	return NewRouter(r.Router.Group(path), r.app)
+	return NewRouter(r.Router.Group(path), r.ctx)
 }
 
 func (r *Router) App() *ctx.Ctx {
-	return r.app
+	return r.ctx
 }
 
 func (r *Router) Get(path string, handler HandlerFunc) IRouter {
@@ -81,12 +81,12 @@ func (r *Router) Delete(path string, handler HandlerFunc) IRouter {
 	return r
 }
 
-func (r *Router) handle(ctx *fiber.Ctx, handler HandlerFunc) error {
-	if err := handler(&Ctx{Fiber: ctx, App: r.app}); err != nil {
-		log.Err(err).Str("Path", string(ctx.Request().URI().Path())).Msg("Api")
+func (r *Router) handle(app *fiber.Ctx, handler HandlerFunc) error {
+	if err := handler(&Ctx{App: app, Ctx: r.ctx}); err != nil {
+		log.Err(err).Str("Path", string(app.Request().URI().Path())).Msg("Api")
 
 		resp := r.error(err)
-		return ctx.Status(resp.Status).JSON(resp)
+		return app.Status(resp.Status).JSON(resp)
 	}
 	return nil
 }

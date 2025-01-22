@@ -22,7 +22,7 @@ func (i *Example) Mysql(ctx *api.Ctx) error {
 	}
 
 	var data []timeZoneName
-	q := ctx.App.Db.NewSelect().Model(&data)
+	q := ctx.Ctx.Db.NewSelect().Model(&data)
 	q.Limit(15)
 	q.Order("Time_zone_id ASC")
 	err := q.Scan(context.Background())

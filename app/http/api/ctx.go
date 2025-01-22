@@ -7,8 +7,8 @@ import (
 )
 
 type Ctx struct {
-	Fiber *fiber.Ctx
-	App   *ctx.Ctx
+	App *fiber.Ctx
+	Ctx *ctx.Ctx
 }
 
 func (ctx *Ctx) Resp(data interface{}) error {
@@ -21,5 +21,5 @@ func (ctx *Ctx) Json(data interface{}, ctype ...string) error {
 }
 
 func (ctx *Ctx) JsonWithStatus(status int, data interface{}, ctype ...string) error {
-	return ctx.Fiber.Status(status).JSON(data, ctype...)
+	return ctx.App.Status(status).JSON(data, ctype...)
 }

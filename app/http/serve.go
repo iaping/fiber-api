@@ -22,7 +22,7 @@ var (
 
 type Serve struct {
 	ctx  *ctx.Ctx
-	s    *fiber.App
+	app  *fiber.App
 	addr string
 }
 
@@ -33,7 +33,7 @@ func New(ctx *ctx.Ctx) *Serve {
 
 	return &Serve{
 		ctx:  ctx,
-		s:    fiber.New(cfg),
+		app:  fiber.New(cfg),
 		addr: ctx.Cfg.Http.Addr,
 	}
 }
@@ -47,7 +47,7 @@ func (s *Serve) Run() (err error) {
 	l.Str("Addr", s.addr)
 	l.Msg("Server is running")
 
-	return s.s.Listen(s.addr)
+	return s.app.Listen(s.addr)
 }
 
 func (s *Serve) debug() {
@@ -59,15 +59,15 @@ func (s *Serve) debug() {
 	l.Str("Path", "/_doc/index.html")
 	l.Msg("Swagger")
 
-	s.s.Get("/_doc/*", swagger.HandlerDefault)
+	s.app.Get("/_doc/*", swagger.HandlerDefault)
 }
 
 func (s *Serve) cors() {
 	cfg := cors.Config{}
-	s.s.Use(cors.New(cfg))
+	s.app.Use(cors.New(cfg))
 }
 
 func (s *Serve) router() {
-	r := api.NewRouter(s.s.Group("/v1"), s.ctx)
+	r := api.NewRouter(s.app.Group("/v1"), s.ctx)
 	r.Inject(apis...)
 }

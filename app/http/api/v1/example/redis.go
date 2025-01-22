@@ -14,12 +14,12 @@ import (
 func (i *Example) Redis(ctx *api.Ctx) error {
 	key := "example"
 
-	status := ctx.App.Rds.Set(context.Background(), key, time.Now(), time.Minute)
+	status := ctx.Ctx.Rds.Set(context.Background(), key, time.Now(), time.Minute)
 	if err := status.Err(); err != nil {
 		return err
 	}
 
-	cmd := ctx.App.Rds.Get(context.Background(), key)
+	cmd := ctx.Ctx.Rds.Get(context.Background(), key)
 	if err := cmd.Err(); err != nil {
 		return err
 	}
