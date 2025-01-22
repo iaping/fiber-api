@@ -11,15 +11,15 @@ type Response struct {
 	Data   interface{} `json:"data"`
 }
 
-func NewResponse(data interface{}) Response {
-	return Response{
+func NewResponse(data interface{}) *Response {
+	return &Response{
 		Status: http.StatusOK,
 		Data:   data,
 	}
 }
 
-func NewErrorResponse(err *Error) Response {
-	return Response{
+func NewErrorResponse(err *Error) *Response {
+	return &Response{
 		Status: err.Status,
 		Code:   err.Code,
 		Error:  err.Text,

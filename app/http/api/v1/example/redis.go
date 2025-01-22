@@ -29,7 +29,7 @@ func (i *Example) Redis(ctx *api.Ctx) error {
 		return err
 	}
 
-	return ctx.Resp(map[string]interface{}{
+	return ctx.Json(map[string]interface{}{
 		"key":   key,
 		"value": val,
 	})

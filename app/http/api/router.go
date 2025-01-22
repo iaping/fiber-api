@@ -19,7 +19,7 @@ type IRouter interface {
 	Put(string, HandlerFunc) IRouter
 	Delete(string, HandlerFunc) IRouter
 
-	App() *ctx.Ctx
+	Ctx() *ctx.Ctx
 }
 
 type Router struct {
@@ -49,7 +49,7 @@ func (r *Router) Group(path string) IRouter {
 	return NewRouter(r.Router.Group(path), r.ctx)
 }
 
-func (r *Router) App() *ctx.Ctx {
+func (r *Router) Ctx() *ctx.Ctx {
 	return r.ctx
 }
 
@@ -91,7 +91,7 @@ func (r *Router) handle(app *fiber.Ctx, handler HandlerFunc) error {
 	return nil
 }
 
-func (r *Router) error(err error) Response {
+func (r *Router) error(err error) *Response {
 	var i *Error
 
 	switch e := err.(type) {

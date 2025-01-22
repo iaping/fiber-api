@@ -3,8 +3,10 @@ package main
 import (
 	"fiber-api/app"
 	cx "fiber-api/app/ctx"
+	"os"
 
 	"github.com/rs/zerolog/log"
+	"github.com/urfave/cli/v2"
 )
 
 // @title fiber-api
@@ -14,9 +16,16 @@ func main() {
 	ctx, err := cx.Load("./config.yaml")
 	if err != nil {
 		log.Panic().Err(err).Msg("Ctx")
+		return
 	}
 
-	if err = app.New(ctx).Run(); err != nil {
-		log.Panic().Err(err).Msg("App")
+	cmd := &cli.App{
+		Name: "fiber-api",
+		Action: func(*cli.Context) error {
+			return app.New(ctx).Run()
+		},
+	}
+	if err = cmd.Run(os.Args); err != nil {
+		log.Err(err).Msg("Run")
 	}
 }

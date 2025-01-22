@@ -11,15 +11,22 @@ type Ctx struct {
 	Ctx *ctx.Ctx
 }
 
-func (ctx *Ctx) Resp(data interface{}) error {
-	resp := NewResponse(data)
-	return ctx.Json(resp)
-}
+func (ctx *Ctx) Json(data interface{}) error {
+	var resp *Response
+	switch i := data.(type) {
+	case *Response:
+		resp = i
+	default:
+		resp = NewResponse(data)
+	}
 
-func (ctx *Ctx) Json(data interface{}, ctype ...string) error {
-	return ctx.JsonWithStatus(fiber.StatusOK, data, ctype...)
+	return ctx.JsonWithStatus(resp.Status, resp)
 }
 
 func (ctx *Ctx) JsonWithStatus(status int, data interface{}, ctype ...string) error {
 	return ctx.App.Status(status).JSON(data, ctype...)
+}
+
+func (ctx *Ctx) IP() string {
+	return ctx.App.IP()
 }

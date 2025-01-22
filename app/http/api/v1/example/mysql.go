@@ -30,5 +30,5 @@ func (i *Example) Mysql(ctx *api.Ctx) error {
 		return err
 	}
 
-	return ctx.Resp(data)
+	return ctx.Json(data)
 }

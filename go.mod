@@ -3,6 +3,7 @@ module fiber-api
 go 1.23.3
 
 require (
+	github.com/bsm/ginkgo/v2 v2.12.0
 	github.com/go-playground/validator/v10 v10.24.0
 	github.com/go-sql-driver/mysql v1.8.1
 	github.com/gofiber/fiber/v2 v2.52.6
@@ -14,13 +15,17 @@ require (
 	github.com/uptrace/bun v1.2.8
 	github.com/uptrace/bun/dialect/mysqldialect v1.2.8
 	github.com/uptrace/bun/extra/bundebug v1.2.8
+	github.com/urfave/cli/v2 v2.3.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
+	github.com/cpuguy83/go-md2man/v2 v2.0.0-20190314233015-f79a8a8ca69d // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/puzpuzpuz/xsync/v3 v3.4.0 // indirect
+	github.com/russross/blackfriday/v2 v2.0.1 // indirect
+	github.com/shurcooL/sanitized_anchor_name v1.0.0 // indirect
 )
 
 require (

@@ -10,5 +10,5 @@ import (
 // @Router /v1/example/middleware [get]
 // @Success 200
 func (i *Example) Middleware(ctx *api.Ctx) error {
-	return ctx.Resp("I used a middleware")
+	return ctx.Json("I used a middleware")
 }

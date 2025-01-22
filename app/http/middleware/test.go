@@ -8,16 +8,16 @@ import (
 )
 
 type Test struct {
-	app *ctx.Ctx
+	ctx *ctx.Ctx
 }
 
-func NewTest(app *ctx.Ctx) *Test {
+func NewTest(ctx *ctx.Ctx) *Test {
 	return &Test{
-		app: app,
+		ctx: ctx,
 	}
 }
 
-func (i *Test) Handle(ctx *fiber.Ctx) error {
-	fmt.Println("I'm a middleware, debug:", i.app.Cfg.Debug)
-	return ctx.Next()
+func (i *Test) Handle(app *fiber.Ctx) error {
+	fmt.Println("I'm a middleware, debug:", i.ctx.Cfg.Debug)
+	return app.Next()
 }

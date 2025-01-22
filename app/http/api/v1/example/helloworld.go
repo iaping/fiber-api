@@ -10,5 +10,5 @@ import (
 // @Router /v1/example/helloworld [get]
 // @Success 200
 func (i *Example) Helloworld(ctx *api.Ctx) error {
-	return ctx.Resp("hello world !!!")
+	return ctx.Json("hello world !!!")
 }
