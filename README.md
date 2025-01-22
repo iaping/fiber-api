@@ -4,8 +4,6 @@
 
 fiber-api是一个基于fiber的API基础开发框架。封装简单易懂，把更多时间放在业务开发上。
 
-[gin版本：https://github.com/iaping/gin-api](https://github.com/iaping/gin-api)
-
 ## 第三方
 - [fiber](https://github.com/gofiber/fiber) web框架
 - [bun](https://github.com/uptrace/bun) DB库
