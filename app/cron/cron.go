@@ -12,19 +12,19 @@ import (
 var (
 	// your jobs
 	jobs = []job.IJob{
-		&job.Test{},
+		job.TestJob,
 	}
 )
 
 type Cron struct {
-	ctx *ctx.Ctx
-	s   *cron.Cron
+	ctx  *ctx.Ctx
+	cron *cron.Cron
 }
 
 func New(ctx *ctx.Ctx) *Cron {
 	return &Cron{
-		ctx: ctx,
-		s:   cron.New(cron.WithSeconds()),
+		ctx:  ctx,
+		cron: cron.New(cron.WithSeconds()),
 	}
 }
 
@@ -35,7 +35,7 @@ func (c *Cron) Run() (err error) {
 		}
 	}
 
-	c.s.Start()
+	c.cron.Start()
 
 	l := log.Info()
 	l.Int("Jobs", len(jobs))
@@ -45,7 +45,7 @@ func (c *Cron) Run() (err error) {
 }
 
 func (c *Cron) start(j job.IJob) (cron.EntryID, error) {
-	return c.s.AddFunc(j.Spec(), func() {
+	return c.cron.AddFunc(j.Spec(), func() {
 		c.log(log.Info(), j).Msg("Job running")
 
 		if err := j.Run(c.ctx); err != nil {

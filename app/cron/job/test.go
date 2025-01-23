@@ -7,6 +7,8 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+var TestJob = &Test{}
+
 type Test struct{}
 
 func (j *Test) Name() string {
