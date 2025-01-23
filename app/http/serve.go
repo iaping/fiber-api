@@ -3,7 +3,7 @@ package http
 import (
 	"fiber-api/app/ctx"
 	"fiber-api/app/http/api"
-	v1 "fiber-api/app/http/api/v1"
+	"fiber-api/app/http/api/v1/example"
 
 	_ "fiber-api/docs"
 
@@ -16,7 +16,7 @@ import (
 var (
 	// your api
 	apis = []api.IApi{
-		v1.Example,
+		example.Api,
 	}
 )
 

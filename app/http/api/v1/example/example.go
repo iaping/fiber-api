@@ -5,6 +5,8 @@ import (
 	"fiber-api/app/http/middleware"
 )
 
+var Api = &Example{}
+
 type Example struct {
 	api.Api
 }
